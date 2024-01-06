@@ -1,0 +1,15 @@
+---
+name: Push GitHub Container Registry
+
+on:
+  pull_request:
+
+jobs:
+  push:
+    runs-on: ubuntu-latest
+    # (github.repository == github.event.pull_request.head.repo.full_name && github.repository != '元リポジトリ (org/repository)')
+    # || (github.repository == github.event.pull_request.head.repo.full_name && github.repository == '元リポジトリ (org/repository)')
+    # をまとめた条件
+    if: github.repository == github.event.pull_request.head.repo.full_name
+    steps:
+      ...
